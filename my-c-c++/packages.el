@@ -48,4 +48,7 @@ which require an initialization must be listed explicitly in the list.")
   (use-package company
     :defer t
     :config
-    (global-set-key (kbd "C-.") 'company-complete)))
+    (global-set-key (kbd "C-.") 'company-complete)
+    (setq company-idle-delay 0.08)
+    (setq company-minimum-prefix-length 1)
+    ))
