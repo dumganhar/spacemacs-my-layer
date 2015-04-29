@@ -15,6 +15,7 @@
     ;; package my-c-c++s go here
     company-c-headers
     company
+    ws-butler
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -52,3 +53,12 @@ which require an initialization must be listed explicitly in the list.")
     (setq company-idle-delay 0.08)
     (setq company-minimum-prefix-length 1)
     ))
+
+(defun my-c-c++/init-ws-butler ()
+    (use-package ws-butler
+      :init
+      (progn
+       (add-hook 'c-mode-common-hook 'ws-butler-mode)
+       (add-hook 'python-mode-hook 'ws-butler-mode)
+       (add-hook 'cython-mode-hook 'ws-butler-mode) 
+        )))

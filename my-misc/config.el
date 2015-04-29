@@ -28,11 +28,30 @@
                                             ("8d" "\\([0-9]+?\\)")
                                             ("8str" "\\([^\"]+?\\)\"")))
 
-;; stop asking whether to save newly added abbrev when quitting emacs
+;; stop aking whether to save newly added abbrev when quitting emacs
 (setq save-abbrevs nil)
 
     ;; turn on abbrev mode globally
 (setq-default abbrev-mode t)
 
 
+(setq ispell-program-name "aspell" ; use aspell instead of ispell
+      ispell-extra-args '("--sug-mode=ultra"))
 
+
+;; reformat your json file, it requires python
+(defun beautify-json ()
+  (interactive)
+  (let ((b (if mark-active (min (point) (mark)) (point-min)))
+        (e (if mark-active (max (point) (mark)) (point-max))))
+    (shell-command-on-region b e
+     "python -mjson.tool" (current-buffer) t)))
+
+;; when save a buffer, the directory is not exsits, it will ask you to create the directory
+(add-hook 'before-save-hook
+          (lambda ()
+            (when buffer-file-name
+              (let ((dir (file-name-directory buffer-file-name)))
+                (when (and (not (file-exists-p dir))
+                           (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
+                  (make-directory dir t))))))

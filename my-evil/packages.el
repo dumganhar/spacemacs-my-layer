@@ -98,7 +98,7 @@ which require an initialization must be listed explicitly in the list.")
       (define-key evil-normal-state-map (kbd ",ii") 'iimage-mode)
       (define-key evil-normal-state-map (kbd "s-g") 'helm-ag-project-root)
       (define-key evil-normal-state-map (kbd "s-f") 'ido-find-file)
-      (define-key evil-normal-state-map (kbd "s-p") 'projectile-switch-project)
+      (define-key evil-normal-state-map (kbd ",f") 'ff-find-other-file)
 
       (define-key evil-normal-state-map (kbd "[ SPC") 'zilongshanren/open-line-above)
       (define-key evil-normal-state-map (kbd "] SPC") 'zilongshanren/open-line-below)

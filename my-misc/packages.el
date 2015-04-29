@@ -16,6 +16,11 @@
     swiper
     magit
     git-messenger
+    helm-flyspell
+    helm
+    perspective
+    persp-projectile
+    projectile
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -104,6 +109,7 @@ which require an initialization must be listed explicitly in the list.")
      (ad-activate 'git-timemachine-mode)
 
      (define-key magit-log-mode-map (kbd "W") 'magit-copy-item-as-kill)
+     (setq magit-process-popup-time 10)
      ))
   )
 
@@ -143,4 +149,62 @@ If `F.~REV~' already exists, use it instead of checking it out again."
          (funcall visit (vc-find-revision file revision))))
 
      (define-key git-messenger-map (kbd "f") 'my-vc-visit-file-revision)
+     )))
+
+(defun my-misc/post-init-helm-flyspell ()
+  (use-package helm-flyspell
+    :commands helm-flyspell-correct
+    :init
+    (global-set-key (kbd "C-c s") 'helm-flyspell-correct)
+    ))
+
+(defun my-misc/post-init-helm ()
+  (use-package helm
+    :init
+      (setq helm-completing-read-handlers-alist
+            '((describe-function . ido)
+              (describe-variable . ido)
+              (debug-on-entry . helm-completing-read-symbols)
+              (find-function . helm-completing-read-symbols)
+              (find-tag . helm-completing-read-with-cands-in-buffer)
+              (ffap-alternate-file . nil)
+              (tmm-menubar . nil)
+              (dired-do-copy . nil)
+              (dired-do-rename . nil)
+              (dired-create-directory . nil)
+              (find-file . ido)
+              (copy-file-and-rename-buffer . nil)
+              (rename-file-and-buffer . nil)
+              (w3m-goto-url . nil)
+              (ido-find-file . nil)
+              (ido-edit-input . nil)
+              (mml-attach-file . ido)
+              (read-file-name . nil)
+              (yas/compile-directory . ido)
+              (execute-extended-command . ido)
+              (minibuffer-completion-help . nil)
+              (minibuffer-complete . nil)
+              (c-set-offset . nil)
+              (wg-load . ido)
+              (rgrep . nil)
+              (read-directory-name . ido)
+              ))
+      ))
+
+(defun my-misc/init-perspective ()
+  (use-package perspective
+    :config
+    (persp-mode t)))
+
+(defun my-misc/init-persp-projectile ()
+  (use-package persp-projectile
+    
+    ))
+
+(defun my-misc/post-init-projectile ()
+  (use-package projectile
+    :defer t
+    :config
+    (progn
+     (define-key evil-normal-state-map (kbd "s-p") 'projectile-persp-switch-project)
      )))
