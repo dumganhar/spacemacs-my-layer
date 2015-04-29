@@ -1,3 +1,6 @@
+(require 'org-compat)
+(require 'org)
+(require 'org-install)
 (add-to-list 'org-modules "org-habit")
 
 (setq org-agenda-inhibit-startup t) ;; ~50x speedup
@@ -13,9 +16,7 @@
 
 (setq org-mobile-directory "~/org-notes/org")
 
-(require 'org-compat)
-(require 'org)
-(require 'org-install)
+
 ;; {{ export org-mode in Chinese into PDF
 ;; @see http://freizl.github.io/posts/tech/2012-04-06-export-orgmode-file-in-Chinese.html
 ;; and you need install texlive-xetex on different platforms
