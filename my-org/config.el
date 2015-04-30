@@ -1,7 +1,7 @@
 (require 'org-compat)
 (require 'org)
 (require 'org-install)
-(add-to-list 'org-modules "org-habit")
+;; (add-to-list 'org-modules "org-habit")
 
 (setq org-agenda-inhibit-startup t) ;; ~50x speedup
 (setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
