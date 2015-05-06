@@ -16,3 +16,4 @@ which require an initialization must be listed explicitly in the list.")
     :init
     (evil-leader/set-key (kbd "mhm") 'discover-my-major)
     ))
+

@@ -94,3 +94,8 @@
 
 ;; (add-hook 'prog-mode-hook 'whitespace-mode)
 (global-whitespace-mode +1)
+
+(setq auto-mode-alist
+      (append
+       '(("\\.mak\\'" . makefile-mode))
+       auto-mode-alist))

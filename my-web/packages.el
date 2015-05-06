@@ -14,6 +14,7 @@
   '(
     ;; package my-webs go here
     impatient-mode
+    moz-controller
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -38,7 +39,10 @@ which require an initialization must be listed explicitly in the list.")
     (add-hook 'web-mode-hook 'my-web-mode-hook)
     ))
   )
-;;
-;; Often the body of an initialize function uses `use-package'
-;; For more info on `use-package', see readme:
-;; https://github.com/jwiegley/use-package
+
+(defun my-web/init-moz-controller ()
+  (use-package moz-controller
+    :init
+    (moz-controller-global-mode t)
+    :diminish moz-controller-mode))
+

@@ -25,7 +25,6 @@ which require an initialization must be listed explicitly in the list.")
 (defun my-writing/post-init-markdown-mode ()
   (use-package markdown-mode
     :defer t
-    :mode ("\\.md\\'" . gfm-mode)
     :config
     (progn
       (defun zilongshanren/markdown-to-html ()
@@ -33,9 +32,14 @@ which require an initialization must be listed explicitly in the list.")
         (start-process "grip" "*gfm-to-html*" "grip" (buffer-file-name)
 
                        )
-        (browse-url (format  "http://localhost:5000/%s.md" (file-name-base))))
+        (browse-url (format  "http://localhost:5000/%s.%s" (file-name-base) (file-name-extension (buffer-file-name)))))
 
-      (define-key gfm-mode-map (kbd "s-h") 'zilongshanren/markdown-to-html) 
+      (evil-leader/set-key-for-mode 'gfm-mode-map
+        "mp" 'zilongshanren/markdown-to-html
+        )
+      (evil-leader/set-key-for-mode 'markdown-mode
+        "mp" 'zilongshanren/markdown-to-html
+        )
       )))
 
 (defun my-writing/init-org-octopress ()

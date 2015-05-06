@@ -16,6 +16,8 @@
     company-c-headers
     company
     ws-butler
+    rtags
+    cmake-font-lock
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -62,3 +64,13 @@ which require an initialization must be listed explicitly in the list.")
        (add-hook 'python-mode-hook 'ws-butler-mode)
        (add-hook 'cython-mode-hook 'ws-butler-mode) 
         )))
+
+(defun my-c-c++/init-rtags ()
+  (use-package rtags
+    :defer t
+    :init (require 'company-rtags)))
+
+(defun my-c-c++/init-cmake-font-lock ()
+  (use-package cmake-font-lock
+    :defer t)
+  )

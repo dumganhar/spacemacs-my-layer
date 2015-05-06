@@ -21,6 +21,7 @@
     perspective
     persp-projectile
     projectile
+    ace-window
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -208,3 +209,15 @@ If `F.~REV~' already exists, use it instead of checking it out again."
     (progn
      (define-key evil-normal-state-map (kbd "s-p") 'projectile-persp-switch-project)
      )))
+
+(defun my-misc/init-ace-window ()
+  (use-package ace-window
+    :defer t
+    :init
+    (progn
+      (setq avi-keys
+            '(?a ?s ?d ?e ?f ?h ?j ?k ?l ?n ?m ?v ?r ?u))
+      (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l))
+      (global-set-key (kbd "M-s")     #'avi-goto-word-1)
+      (global-set-key (kbd "C-x C-o") #'ace-window)
+      )))
