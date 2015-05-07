@@ -22,6 +22,7 @@
     persp-projectile
     projectile
     ace-window
+    ;; helm-ls-git
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -35,8 +36,7 @@ which require an initialization must be listed explicitly in the list.")
 (defun my-misc/init-swiper ()
   "Initialize my package"
   (use-package swiper
-    :defer t
-    :config
+    :init
     (progn
       ;; http://oremacs.com/2015/04/16/ivy-mode/
       ;; (ivy-mode -1)
@@ -71,7 +71,7 @@ which require an initialization must be listed explicitly in the list.")
 
 
 (defun my-misc/post-init-magit ()
-  (use-package magit 
+  (use-package magit
     :defer t
     :config
     (progn
@@ -199,7 +199,7 @@ If `F.~REV~' already exists, use it instead of checking it out again."
 
 (defun my-misc/init-persp-projectile ()
   (use-package persp-projectile
-    
+
     ))
 
 (defun my-misc/post-init-projectile ()
@@ -221,3 +221,11 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (global-set-key (kbd "M-s")     #'avi-goto-word-1)
       (global-set-key (kbd "C-x C-o") #'ace-window)
       )))
+
+;; (defun my-misc/init-helm-ls-git ()
+;;   (use-package helm-ls-git
+;;     :defer t
+;;     :config
+;;     (progn
+;;       (setq helm-ls-git-show-abs-or-relative 'relative)
+;;       (evil-leader/set-key "pf" 'helm-ls-git-ls))))

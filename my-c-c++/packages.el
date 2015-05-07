@@ -18,6 +18,8 @@
     ws-butler
     rtags
     cmake-font-lock
+    google-c-style
+    cmake-mode
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -72,5 +74,27 @@ which require an initialization must be listed explicitly in the list.")
 
 (defun my-c-c++/init-cmake-font-lock ()
   (use-package cmake-font-lock
-    :defer t)
-  )
+    :defer t))
+
+(defun my-c-c++/init-google-c-style ()
+  (use-package google-c-style
+    :init (add-hook 'c-mode-common-hook 'google-set-c-style)))
+
+(defun my-c-c++/post-init-cmake-mode ()
+  (use-package cmake-mode
+    :defer
+    :config
+    (progn
+      (defun cmake-rename-buffer ()
+        "Renames a CMakeLists.txt buffer to cmake-<directory name>."
+        (interactive)
+        (when (and (buffer-file-name)
+                   (string-match "CMakeLists.txt" (buffer-name)))
+          (setq parent-dir (file-name-nondirectory
+                            (directory-file-name
+                             (file-name-directory (buffer-file-name)))))
+          (setq new-buffer-name (concat "cmake-" parent-dir))
+          (rename-buffer new-buffer-name t)))
+
+      (add-hook 'cmake-mode-hook (function cmake-rename-buffer))
+      )))
