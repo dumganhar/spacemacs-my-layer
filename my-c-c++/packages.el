@@ -24,6 +24,9 @@
     company-irony
     flycheck-irony
     flycheck
+    helm-make
+    helm-gtags
+    ggtags
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -66,6 +69,7 @@ which require an initialization must be listed explicitly in the list.")
 
 (defun my-c-c++/init-ws-butler ()
     (use-package ws-butler
+      :diminish ws-butler-mode
       :init
       (progn
        (add-hook 'c-mode-common-hook 'ws-butler-mode)
@@ -75,8 +79,9 @@ which require an initialization must be listed explicitly in the list.")
 
 (defun my-c-c++/init-rtags ()
   (use-package rtags
-    :defer t
-    :init (require 'company-rtags)))
+    :init (require 'company-rtags)
+    :config
+    ))
 
 (defun my-c-c++/init-cmake-font-lock ()
   (use-package cmake-font-lock
@@ -107,6 +112,7 @@ which require an initialization must be listed explicitly in the list.")
 
 (defun my-c-c++/init-irony ()
   (use-package irony
+    :diminish irony-mode
     :defer t
     :init
     (progn
@@ -129,6 +135,7 @@ which require an initialization must be listed explicitly in the list.")
 
       (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
+
       )))
 
 (defun my-c-c++/init-company-irony ()
@@ -143,3 +150,31 @@ which require an initialization must be listed explicitly in the list.")
   (use-package flycheck
     :defer t
     :config (add-hook 'flycheck-mode-hook 'flycheck-irony-setup)))
+
+(defun my-c-c++/init-helm-make ()
+  (use-package helm-make
+    :defer t))
+
+(defun gtags/init-ggtags ()
+  (use-package ggtags
+    :defer t))
+
+(defun my-c-c++/init-helm-gtags ()
+  (use-package helm-gtags
+    :diminish helm-gtags-mode
+    :init (progn
+            (add-hook 'c-mode-common-hook 'helm-gtags-mode)
+            (setq helm-gtags-ignore-case t
+                  helm-gtags-auto-update t
+                  helm-gtags-use-input-at-cursor t
+                  helm-gtags-pulse-at-cursor t))
+    :defer t
+    :config
+    (progn
+      (evil-leader/set-key-for-mode 'c++-mode
+        "mhi" 'helm-imenu
+        "mhd" 'helm-gtags-dwim
+        "mhr" 'helm-gtags-find-rtag
+        "mhs" 'helm-gtags-find-symbol
+        "mhf" 'helm-gtags-find-files)
+      )))
