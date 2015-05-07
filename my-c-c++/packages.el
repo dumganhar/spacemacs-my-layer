@@ -20,6 +20,10 @@
     cmake-font-lock
     google-c-style
     cmake-mode
+    irony
+    company-irony
+    flycheck-irony
+    flycheck
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -56,6 +60,8 @@ which require an initialization must be listed explicitly in the list.")
     (global-set-key (kbd "C-.") 'company-complete)
     (setq company-idle-delay 0.08)
     (setq company-minimum-prefix-length 1)
+    (setq company-backends (delete 'company-semantic company-backends))
+    (setq company-backends (delete 'company-clang company-backends))
     ))
 
 (defun my-c-c++/init-ws-butler ()
@@ -98,3 +104,42 @@ which require an initialization must be listed explicitly in the list.")
 
       (add-hook 'cmake-mode-hook (function cmake-rename-buffer))
       )))
+
+(defun my-c-c++/init-irony ()
+  (use-package irony
+    :defer t
+    :init
+    (progn
+      (add-hook 'c++-mode-hook 'irony-mode)
+      (add-hook 'c-mode-hook 'irony-mode)
+      (add-hook 'objc-mode-hook 'irony-mode)
+
+      ;; replace the `completion-at-point' and `complete-symbol' bindings in
+      ;; irony-mode's buffers by irony-mode's function
+      (defun my-irony-mode-hook ()
+        (define-key irony-mode-map [remap completion-at-point]
+          'irony-completion-at-point-async)
+        (define-key irony-mode-map [remap complete-symbol]
+          'irony-completion-at-point-async)
+        (add-to-list 'company-backends 'company-irony))
+
+      (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+      ;; it is not fast and accurate
+      ;; (add-hook 'irony-mode-hook 'irony-eldoc)
+
+      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+      )))
+
+(defun my-c-c++/init-company-irony ()
+  (use-package company-irony
+    :defer t))
+
+(defun my-c-c++/init-flycheck-irony ()
+  (use-package flycheck-irony
+    :defer t))
+
+(defun my-c-c++/post-init-flycheck ()
+  (use-package flycheck
+    :defer t
+    :config (add-hook 'flycheck-mode-hook 'flycheck-irony-setup)))
