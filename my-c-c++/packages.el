@@ -13,7 +13,6 @@
 (defvar my-c-c++-packages
   '(
     ;; package my-c-c++s go here
-    company-c-headers
     company
     ws-butler
     rtags
@@ -22,6 +21,7 @@
     cmake-mode
     irony
     company-irony
+    company-c-headers
     flycheck-irony
     flycheck
     helm-make
@@ -127,7 +127,11 @@ which require an initialization must be listed explicitly in the list.")
           'irony-completion-at-point-async)
         (define-key irony-mode-map [remap complete-symbol]
           'irony-completion-at-point-async)
-        (add-to-list 'company-backends 'company-irony))
+
+        (setq company-backends (delete 'company-c-headers company-backends))
+        (add-to-list 'company-backends 'company-irony)
+        (add-to-list 'company-backends 'company-c-headers)
+        )
 
       (add-hook 'irony-mode-hook 'my-irony-mode-hook)
       ;; it is not fast and accurate

@@ -154,8 +154,8 @@ which require an initialization must be listed explicitly in the list.")
         "h" 'magit-toggle-diff-refine-hunk)
 
       ;; Evil Emacs state map
-      (define-key evil-emacs-state-map "[b" 'previous-buffer)
-      (define-key evil-emacs-state-map "]b" 'next-buffer)
+      ;; (define-key evil-emacs-state-map "[b" 'previous-buffer)
+      ;; (define-key evil-emacs-state-map "]b" 'next-buffer)
       ;; define c-w h,j,k,l to window movement in evil-eamcs mode
       (define-key evil-emacs-state-map (kbd "C-w h") 'evil-window-left)
       (define-key evil-emacs-state-map (kbd "C-w j") 'evil-window-down)

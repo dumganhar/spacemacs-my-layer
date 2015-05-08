@@ -29,8 +29,9 @@ which require an initialization must be listed explicitly in the list.")
     :defer t
     :diminish (lispy-mode)
     :init
-    (add-hook 'emacs-lisp-mode-hook (lambda ()(lispy-mode 1)))
-    (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))))
+    (progn 
+      (add-hook 'emacs-lisp-mode-hook (lambda ()(lispy-mode 1)))
+      (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1))))))
 ;;
 ;; Often the body of an initialize function uses `use-package'
 ;; For more info on `use-package', see readme:

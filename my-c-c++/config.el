@@ -55,6 +55,7 @@
       (add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
       (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
       
+      (add-hook 'c-mode-common-hook #'yas-minor-mode)
       
       (defvar cocos2dx-dir "~/cocos2d-x")
       (semantic-add-system-include cocos2dx-dir 'c++-mode)
