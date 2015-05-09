@@ -22,6 +22,7 @@
     persp-projectile
     projectile
     ace-window
+    avy
     ;; helm-ls-git
     )
   "List of all packages to install and/or initialize. Built-in packages
@@ -218,9 +219,16 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (setq avi-keys
             '(?a ?s ?d ?e ?f ?h ?j ?k ?l ?n ?m ?v ?r ?u))
       (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l))
-      (global-set-key (kbd "M-s")     #'avi-goto-word-1)
-      (global-set-key (kbd "C-x C-o") #'ace-window)
-      )))
+      (global-set-key (kbd "C-x C-o") #'ace-window))))
+
+(defun my-misc/init-avy ()
+  (use-package avy
+    :defer t
+    :init
+    (progn
+      (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+      (global-set-key (kbd "M-s") 'avy-goto-char-2)
+      (evil-leader/set-key "SPC" 'avy-goto-char-2))))
 
 ;; (defun my-misc/init-helm-ls-git ()
 ;;   (use-package helm-ls-git
