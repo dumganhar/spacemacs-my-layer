@@ -85,22 +85,6 @@ Insert an Org link at point."
     (replace-match "\n")
     (forward-char 1)))
 
-(defun prelude-open-with (arg)
-  "Open visited file in default external program.
-When in dired mode, open file under the cursor.
-With a prefix ARG always prompt for command to use."
-  (interactive "P")
-  (let* ((current-file-name
-          (if (eq major-mode 'dired-mode)
-              (dired-get-file-for-visit)
-            buffer-file-name))
-         (open (pcase system-type
-                 (`darwin "open")
-                 ((or `gnu `gnu/linux `gnu/kfreebsd) "xdg-open")))
-         (program (if (or arg (not open))
-                      (read-shell-command "Open current file with: ")
-                    open)))
-    (start-process "prelude-open-with-process" nil program current-file-name)))
 
 (defun dired-get-size ()
   (interactive)
@@ -213,3 +197,25 @@ comment box."
     (comment-box b e 1)
     (goto-char e)
     (set-marker e nil)))
+
+;;http://emacsredux.com/blog/2013/03/26/smarter-open-line/
+(defun smart-open-line ()
+  "Insert an empty line after the current line.
+Position the cursor at its beginning, according to the current mode."
+  (interactive)
+  (move-end-of-line nil)
+  (newline-and-indent))
+
+
+(defun rename-file-and-buffer ()
+  "Rename the current buffer and file it is visiting."
+  (interactive)
+  (let ((filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (message "Buffer is not visiting a file!")
+      (let ((new-name (read-file-name "New name: " filename)))
+        (cond
+         ((vc-backend filename) (vc-rename-file filename new-name))
+         (t
+          (rename-file filename new-name t)
+          (set-visited-file-name new-name t t)))))))

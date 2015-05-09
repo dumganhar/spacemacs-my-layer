@@ -1,5 +1,5 @@
 (global-set-key (kbd "C-c l") 'zilongshanren/insert-chrome-current-tab-url)
-(global-set-key (kbd "C-c o") 'prelude-open-with)
+(global-set-key (kbd "C-c o") 'spacemacs/open-in-external-app)
 
 (require 'dired)
 (define-key dired-mode-map (kbd "<mouse-2>") 'my-dired-find-file)
@@ -17,9 +17,7 @@
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
 (define-key dired-mode-map (kbd "^") (lambda () (interactive) (find-alternate-file "..")))
 
-(eval-after-load 'term'
-      (define-key term-raw-map (kbd "C-:") 'dired-jump)
-      )
+(eval-after-load 'term '(define-key term-raw-map (kbd "C-:") 'dired-jump))
 
 (define-key dired-mode-map (kbd "z") 'dired-get-size)
 (define-key dired-mode-map (kbd "C-c C-e") 'dired-toggle-read-only)
@@ -36,3 +34,8 @@
 (define-key 'help-command (kbd "C-l") 'find-library)
 
 (define-key 'help-command (kbd "C-i") 'info-display-manual)
+
+(global-set-key [(shift return)] 'smart-open-line)
+
+
+

@@ -99,3 +99,5 @@
       (append
        '(("\\.mak\\'" . makefile-mode))
        auto-mode-alist))
+
+(setq large-file-warning-threshold 100000000)
