@@ -1,11 +1,4 @@
 (require 'cc-mode)
-(font-lock-add-keywords 'c++-mode
-                        '(
-                          ("constexpr" . 'font-lock-keyword-face)
-                          ("auto" . 'font-lock-keyword-face)
-                          ("nullptr" . 'font-lock-keyword-face)
-                          ("override" . 'font-lock-keyword-face)
-                          ))
 
 ;; http://stackoverflow.com/questions/23553881/emacs-indenting-of-c11-lambda-functions-cc-mode
 (defadvice c-lineup-arglist (around my activate)
