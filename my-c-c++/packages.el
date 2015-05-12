@@ -10,7 +10,7 @@
 ;;
 ;;; License: GPLv3
 
-(defvar my-c-c++-packages
+(setq my-c-c++-packages
   '(
     ;; package my-c-c++s go here
     company
@@ -19,30 +19,16 @@
     cmake-font-lock
     google-c-style
     cmake-mode
-    irony
-    company-irony
+    ;; irony
+    ;; company-irony
     company-c-headers
-    flycheck-irony
-    flycheck
+    ;; flycheck-irony
+    ;; flycheck
     helm-make
     helm-gtags
     ggtags
-    )
-  "List of all packages to install and/or initialize. Built-in packages
-which require an initialization must be listed explicitly in the list.")
+    )) 
 
-(defvar my-c-c++-excluded-packages '()
-  "List of packages to exclude.")
-
-;; For each package, define a function my-c-c++/init-<package-my-c-c++>
-;;
-;; (defun my-c-c++/init-my-package ()
-;;   "Initialize my package"
-;;   )
-;;
-;; Often the body of an initialize function uses `use-package'
-;; For more info on `use-package', see readme:
-;; https://github.com/jwiegley/use-package
 
 (defun my-c-c++/post-init-company-c-headers()
   (use-package company-c-headers
@@ -150,10 +136,10 @@ which require an initialization must be listed explicitly in the list.")
   (use-package flycheck-irony
     :defer t))
 
-(defun my-c-c++/post-init-flycheck ()
-  (use-package flycheck
-    :defer t
-    :config (add-hook 'flycheck-mode-hook 'flycheck-irony-setup)))
+;; (defun my-c-c++/post-init-flycheck ()
+;;   (use-package flycheck
+;;     :defer t
+;;     :config (add-hook 'flycheck-mode-hook 'flycheck-irony-setup)))
 
 (defun my-c-c++/init-helm-make ()
   (use-package helm-make
