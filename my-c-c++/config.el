@@ -36,10 +36,9 @@
 
       (semantic-mode t)
 
-      ;; use google-c-style instead
-      ;; (setq c-default-style "linux") ;; set style to "linux"
-      ;; (setq c-basic-offset 4)
-      ;; (c-set-offset 'substatement-open 0)
+      (setq c-default-style "linux") ;; set style to "linux"
+      (setq c-basic-offset 4)
+      (c-set-offset 'substatement-open 0)
       (setq cc-other-file-alist
             '(("\\.cpp"   (".h"))
               ("\\.h"   (".c"".cpp"))))
@@ -127,3 +126,4 @@
                     ("\\<\\(xstring\\|xchar\\)\\>" . font-lock-type-face)
                     ))
              ) t)
+

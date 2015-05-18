@@ -17,17 +17,15 @@
     ws-butler
     rtags
     cmake-font-lock
-    google-c-style
+    ;; google-c-style
     cmake-mode
-    ;; irony
-    ;; company-irony
     company-c-headers
-    ;; flycheck-irony
-    ;; flycheck
+    flycheck
     helm-make
     helm-gtags
     ggtags
-    )) 
+    ycmd
+    ))
 
 
 (defun my-c-c++/post-init-company-c-headers()
@@ -35,12 +33,13 @@
     :defer t
     :init(progn
            (setq company-c-headers-path-system
-    (quote
-     ("/usr/include/" "/usr/local/include/" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")))
-  (setq company-c-headers-path-user
-    (quote
-     ("/Users/guanghui/cocos2d-x/cocos/platform" "/Users/guanghui/cocos2d-x/cocos" "." "/Users/guanghui/cocos2d-x/cocos/audio/include/")))
-  )))
+                 (quote
+                  ("/usr/include/" "/usr/local/include/" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")))
+           (setq company-c-headers-path-user
+                 (quote
+                  ("/Users/guanghui/cocos2d-x/cocos/platform" "/Users/guanghui/cocos2d-x/cocos" "." "/Users/guanghui/cocos2d-x/cocos/audio/include/")))
+           )
+    ))
 
 (defun my-c-c++/post-init-company()
   (use-package company
@@ -49,8 +48,6 @@
     (global-set-key (kbd "C-.") 'company-complete)
     (setq company-idle-delay 0.08)
     (setq company-minimum-prefix-length 1)
-    (setq company-backends (delete 'company-semantic company-backends))
-    (setq company-backends (delete 'company-clang company-backends))
     ))
 
 (defun my-c-c++/init-ws-butler ()
@@ -96,50 +93,11 @@
       (add-hook 'cmake-mode-hook (function cmake-rename-buffer))
       )))
 
-(defun my-c-c++/init-irony ()
-  (use-package irony
-    :diminish irony-mode
+
+(defun my-c-c++/post-init-flycheck ()
+  (use-package flycheck
     :defer t
-    :init
-    (progn
-      (add-hook 'c++-mode-hook 'irony-mode)
-      (add-hook 'c-mode-hook 'irony-mode)
-      (add-hook 'objc-mode-hook 'irony-mode)
-
-      ;; replace the `completion-at-point' and `complete-symbol' bindings in
-      ;; irony-mode's buffers by irony-mode's function
-      (defun my-irony-mode-hook ()
-        (define-key irony-mode-map [remap completion-at-point]
-          'irony-completion-at-point-async)
-        (define-key irony-mode-map [remap complete-symbol]
-          'irony-completion-at-point-async)
-
-        (setq company-backends (delete 'company-c-headers company-backends))
-        (add-to-list 'company-backends 'company-irony)
-        (add-to-list 'company-backends 'company-c-headers)
-        )
-
-      (add-hook 'irony-mode-hook 'my-irony-mode-hook)
-      ;; it is not fast and accurate
-      ;; (add-hook 'irony-mode-hook 'irony-eldoc)
-
-      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-
-
-      )))
-
-(defun my-c-c++/init-company-irony ()
-  (use-package company-irony
-    :defer t))
-
-(defun my-c-c++/init-flycheck-irony ()
-  (use-package flycheck-irony
-    :defer t))
-
-;; (defun my-c-c++/post-init-flycheck ()
-;;   (use-package flycheck
-;;     :defer t
-;;     :config (add-hook 'flycheck-mode-hook 'flycheck-irony-setup)))
+    :config (setq flycheck-display-errors-delay 0.2)))
 
 (defun my-c-c++/init-helm-make ()
   (use-package helm-make
@@ -168,3 +126,6 @@
         "mhs" 'helm-gtags-find-symbol
         "mhf" 'helm-gtags-find-files)
       )))
+
+(defun my-c-c++/post-init-ycmd ()
+  (setq ycmd-tag-files 'atuo))
