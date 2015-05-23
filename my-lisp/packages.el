@@ -14,7 +14,9 @@
     :init
     (progn 
       (add-hook 'emacs-lisp-mode-hook (lambda ()(lispy-mode 1)))
-      (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1))))))
+      (add-hook 'spacemacs-mode-hook (lambda () (lispy-mode 1)))
+      (add-hook 'clojure-mode-hook (lambda () (lispy-mode 1)))
+      (add-hook 'cider-repl-mode-hook (lambda () (lispy-mode 1))))))
 ;;
 ;; Often the body of an initialize function uses `use-package'
 ;; For more info on `use-package', see readme:
