@@ -29,7 +29,7 @@
 
 
 (global-prettify-symbols-mode 1)
-(setq-default fill-column 80)
+(setq-default fill-column 110)
 
 (setq recenter-positions '(top middle bottom))
 ;; delete the selection with a keypress
@@ -81,6 +81,8 @@
 ;; current subdir, instead of the current subdir of this dired buffer
 (setq dired-dwim-target t)
 
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(evil-leader/set-key "bi" 'ibuffer)
 ;; when press c-d, the result is wrong.
 ;; (defadvice ido-find-file (after find-file-sudo activate)
 ;;   "Find file as root if necessary."
@@ -90,7 +92,7 @@
 
 ;; http://emacsredux.com/blog/2013/05/31/highlight-lines-that-exceed-a-certain-length-limit/
 (require 'whitespace)
-(setq whitespace-line-column 80) ;; limit line length
+(setq whitespace-line-column fill-column) ;; limit line length
 (setq whitespace-style '(face lines-tail))
 
 ;; (add-hook 'prog-mode-hook 'whitespace-mode)

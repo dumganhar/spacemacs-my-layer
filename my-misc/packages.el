@@ -12,7 +12,7 @@
         projectile
         ace-window
         avy
-        ;; helm-ls-git
+        helm-ls-git
         ))
 
 
@@ -215,10 +215,10 @@ If `F.~REV~' already exists, use it instead of checking it out again."
       (global-set-key (kbd "M-s") 'avy-goto-char-2)
       (evil-leader/set-key "SPC" 'avy-goto-char-2))))
 
-;; (defun my-misc/init-helm-ls-git ()
-;;   (use-package helm-ls-git
-;;     :defer t
-;;     :config
-;;     (progn
-;;       (setq helm-ls-git-show-abs-or-relative 'relative)
-;;       (evil-leader/set-key "pf" 'helm-ls-git-ls))))
+(defun my-misc/init-helm-ls-git ()
+  (use-package helm-ls-git
+    :defer t
+    :config
+    (progn
+      (setq helm-ls-git-show-abs-or-relative 'relative)
+      )))
