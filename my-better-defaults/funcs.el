@@ -179,8 +179,10 @@ Insert an Org link at point."
   "Switch to terminal. Launch if nonexistent."
   (interactive)
   (if (get-buffer "*ansi-term*")
-      (switch-to-buffer "*ansi-term*")
-    (ansi-term "/bin/zsh"))
+      (switch-to-buffer-other-window "*ansi-term*")
+    (progn
+      (split-window-right-and-focus)
+      (ansi-term "/bin/zsh")))
   (get-buffer-process "*ansi-term*"))
 
 (defalias 'tt 'terminal)

@@ -13,11 +13,16 @@
         ace-window
         avy
         helm-ls-git
+        reveal-in-finder
         ))
 
-
-;; (require 'ivy)
-;; For each package, define a function my-misc/init-<package-my-misc>
+(defun my-misc/init-reveal-in-finder ()
+  (use-package reveal-in-finder
+    :defer t
+    :init
+    (progn
+      (evil-leader/set-key
+        "bf" 'reveal-in-finder))))
 ;;
 (defun my-misc/init-swiper ()
   "Initialize my package"

@@ -14,7 +14,8 @@
     (setq geiser-active-implementations '(guile))
     (evil-leader/set-key-for-mode 'scheme-mode
       "mhd" 'geiser-doc-symbol-at-point
-      "mgg" 'geiser-edit-symbol-at-point)
+      "mgg" 'geiser-edit-symbol-at-point
+      "msi" 'geiser-mode-switch-to-repl-and-enter)
     ))
 
 ;;

@@ -7,6 +7,8 @@
                                             ("8inf" "∞")
                                             ("8luv" "♥")
                                             ("8smly" "☺")
+                                            ("8en" "@~english")
+                                            ("8zh" "@~chinese")
 
                                             ;; email
                                             ("8me" "guanghui.qu@cocos2d-x.org")
