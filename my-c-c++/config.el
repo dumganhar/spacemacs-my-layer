@@ -14,24 +14,6 @@
             0                           ; no additional indent
           ad-do-it)))                   ; default behavior
 
-(require 'semantic/bovine/c)
-(require 'semantic/ia)
-
-(add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-mru-bookmark-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
-;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-idle-local-symbol-highlight-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode)
-;; (add-to-list 'semantic-default-submodes 'global-semantic-decoration-mode)
-
-;; The following settings sometimes is very annoying, flycheck-irony is more sutiable
-;; (add-to-list 'semantic-default-submodes 'global-semantic-show-unmatched-syntax-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-show-parser-state-mode)
-(add-to-list 'semantic-default-submodes 'global-semantic-highlight-edits-mode)
-
-(semantic-mode t)
 
 (setq c-default-style "linux") ;; set style to "linux"
 (setq c-basic-offset 4)
@@ -40,12 +22,25 @@
       '(("\\.cpp"   (".h"))
         ("\\.h"   (".c"".cpp"))))
 
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.c\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
 
-;; (add-hook 'c-mode-common-hook #'yas-minor-mode)
+;; (add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
+;; (add-to-list 'semantic-default-submodes 'global-semantic-mru-bookmark-mode)
+;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
+;; ;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
+;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-local-symbol-highlight-mode)
+;; (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+;; (add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode)
+;; ;; (add-to-list 'semantic-default-submodes 'global-semantic-decoration-mode)
 
+;; ;; The following settings sometimes is very annoying, flycheck-irony is more sutiable
+;; ;; (add-to-list 'semantic-default-submodes 'global-semantic-show-unmatched-syntax-mode)
+;; (add-to-list 'semantic-default-submodes 'global-semantic-show-parser-state-mode)
+;; (add-to-list 'semantic-default-submodes 'global-semantic-highlight-edits-mode)
+
+;; (semantic-mode t)
+
+(require 'semantic/bovine/c)
+(require 'semantic/ia)
 (defvar cocos2dx-dir "~/cocos2d-x")
 (semantic-add-system-include cocos2dx-dir 'c++-mode)
 (semantic-add-system-include (concat cocos2dx-dir "/cocos") 'c++-mode)
@@ -53,11 +48,11 @@
 (semantic-add-system-include (concat cocos2dx-dir "/audio/include") 'c++-mode)
 (semantic-add-system-include (concat cocos2dx-dir "/platform/mac") 'c++-mode)
 (semantic-add-system-include (concat cocos2dx-dir "/extensions") 'c++-mode)
-;; (semantic-add-system-include (concat cocos2dx-dir "/external/mac/x86-64/include") 'c++-mode)
-;; (semantic-add-system-include (concat cocos2dx-dir "/external/mac/x86-64/include/luajit") 'c++-mode)
-;; (semantic-add-system-include (concat cocos2dx-dir "/external/mac/x86-64/include/freetype") 'c++-mode)
-;; (semantic-add-system-include (concat cocos2dx-dir "/external/mac/x86-64/include/zlib") 'c++-mode)
-;;include path for OpenGL
+(semantic-add-system-include (concat cocos2dx-dir "/external/mac/x86-64/include") 'c++-mode)
+(semantic-add-system-include (concat cocos2dx-dir "/external/mac/x86-64/include/luajit") 'c++-mode)
+(semantic-add-system-include (concat cocos2dx-dir "/external/mac/x86-64/include/freetype") 'c++-mode)
+(semantic-add-system-include (concat cocos2dx-dir "/external/mac/x86-64/include/zlib") 'c++-mode)
+;; include path for OpenGL
 (semantic-add-system-include "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/OpenGL.framework/Versions/A/Headers" 'c++-mode)
 (add-to-list 'auto-mode-alist (cons cocos2dx-dir 'c++-mode))
 (add-to-list 'semantic-lex-c-preprocessor-symbol-map '("CC_DLL" . ""))
