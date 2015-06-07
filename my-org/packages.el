@@ -3,8 +3,15 @@
         ;; package my-orgs go here
         org-pomodoro
         ox-reveal
+        org-mac-link
         worf
         org-download))
+
+(defun my-org/init-org-mac-link ()
+  (use-package org-mac-link
+    :init
+    (add-hook 'org-mode-hook (lambda () 
+                               (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link)))))
 
 (defun my-org/post-init-org-pomodoro ()
   (use-package org-pomodoro

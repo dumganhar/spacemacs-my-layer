@@ -14,7 +14,16 @@
         avy
         helm-ls-git
         reveal-in-finder
+        command-log-mode
+        chinese-fonts-setup
         ))
+
+(defun my-misc/init-chinese-fonts-setup ()
+  (use-package chinese-fonts-setup))
+
+
+(defun my-misc/init-command-log-mode ()
+  (use-package command-log-mode))
 
 (defun my-misc/init-reveal-in-finder ()
   (use-package reveal-in-finder
