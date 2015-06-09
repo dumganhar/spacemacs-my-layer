@@ -24,19 +24,8 @@
 
 
 ;; (add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
-;; (add-to-list 'semantic-default-submodes 'global-semantic-mru-bookmark-mode)
 ;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
-;; ;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode)
-;; (add-to-list 'semantic-default-submodes 'global-semantic-idle-local-symbol-highlight-mode)
 ;; (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
-;; (add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode)
-;; ;; (add-to-list 'semantic-default-submodes 'global-semantic-decoration-mode)
-
-;; ;; The following settings sometimes is very annoying, flycheck-irony is more sutiable
-;; ;; (add-to-list 'semantic-default-submodes 'global-semantic-show-unmatched-syntax-mode)
-;; (add-to-list 'semantic-default-submodes 'global-semantic-show-parser-state-mode)
-;; (add-to-list 'semantic-default-submodes 'global-semantic-highlight-edits-mode)
-
 ;; (semantic-mode t)
 
 (require 'semantic/bovine/c)
@@ -71,7 +60,8 @@
 
 (set-default 'semantic-case-fold t)
 
-;;add doxyemacs
+;;add doxyemacs 
+
 (add-to-list 'load-path "~/.emacs.d/spacemacs-private/my-c-c++/extensions/doxyemacs")
 (require 'doxymacs)
 (defun my-doxymacs-font-lock-hook ()
@@ -98,6 +88,21 @@
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
 
+;;settings for  chinese font
+(add-to-list 'load-path "~/.emacs.d/spacemacs-private/my-c-c++/extensions/eim")
+(autoload 'eim-use-package "eim" "Another emacs input method")
+;; Tooltip 暂时还不好用
+(setq eim-use-tooltip nil)
+
+(register-input-method
+ "eim-wb" "euc-cn" 'eim-use-package
+ "五笔" "汉字五笔输入法" "wb.txt")
+(register-input-method
+ "eim-py" "euc-cn" 'eim-use-package
+ "拼音" "汉字拼音输入法" "py.txt")
+;; 用 ; 暂时输入英文
+(require 'eim-extra)
+(global-set-key ";" 'eim-insert-ascii)
 
 (add-hook 'c++-mode-hook
           '(lambda()
