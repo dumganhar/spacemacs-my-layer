@@ -112,29 +112,29 @@
       (define-key evil-visual-state-map (kbd "X") 'er/contract-region)
       (define-key evil-visual-state-map (kbd "C-r") 'zilongshanren/evil-quick-replace)
 
-      (evil-add-hjkl-bindings ibuffer-mode-map 'emacs)
-      (evil-add-hjkl-bindings org-agenda-mode-map 'emacs)
-      (evil-add-hjkl-bindings dired-mode-map 'emacs)
-      (evil-add-hjkl-bindings help-mode-map 'emacs)
-      (evil-add-hjkl-bindings elfeed-search-mode-map 'emacs)
-      (evil-add-hjkl-bindings elfeed-show-mode-map 'emacs)
+      ;; (evil-add-hjkl-bindings ibuffer-mode-map 'emacs)
+      ;; (evil-add-hjkl-bindings org-agenda-mode-map 'emacs)
+      ;; (evil-add-hjkl-bindings dired-mode-map 'emacs)
+      ;; (evil-add-hjkl-bindings help-mode-map 'emacs)
+      ;; (evil-add-hjkl-bindings elfeed-search-mode-map 'emacs)
+      ;; (evil-add-hjkl-bindings elfeed-show-mode-map 'emacs)
 
 
-      (evil-add-hjkl-bindings package-menu-mode-map 'emacs)
-      (evil-add-hjkl-bindings Info-mode-map 'emacs)
+      ;; (evil-add-hjkl-bindings package-menu-mode-map 'emacs)
+      ;; (evil-add-hjkl-bindings Info-mode-map 'emacs)
 
       ;; Magit from avsej
       ;;
-      (evil-add-hjkl-bindings magit-log-mode-map 'emacs)
-      (evil-add-hjkl-bindings occur-mode-map 'emacs)
-      (evil-add-hjkl-bindings magit-commit-mode-map 'emacs)
-      (evil-add-hjkl-bindings magit-branch-manager-mode-map 'emacs
-        "K" 'magit-discard-item
-        "L" 'magit-key-mode-popup-logging)
-      (evil-add-hjkl-bindings magit-status-mode-map 'emacs
-        "K" 'magit-discard-item
-        "l" 'magit-key-mode-popup-logging
-        "h" 'magit-toggle-diff-refine-hunk)
+      ;; (evil-add-hjkl-bindings magit-log-mode-map 'emacs)
+      ;; (evil-add-hjkl-bindings occur-mode-map 'emacs)
+      ;; (evil-add-hjkl-bindings magit-commit-mode-map 'emacs)
+      ;; (evil-add-hjkl-bindings magit-branch-manager-mode-map 'emacs
+      ;;   "K" 'magit-discard-item
+      ;;   "L" 'magit-key-mode-popup-logging)
+      ;; (evil-add-hjkl-bindings magit-status-mode-map 'emacs
+      ;;   "K" 'magit-discard-item
+      ;;   "l" 'magit-key-mode-popup-logging
+      ;;   "h" 'magit-toggle-diff-refine-hunk)
 
       ;; Evil Emacs state map
       ;; (define-key evil-emacs-state-map "[b" 'previous-buffer)
