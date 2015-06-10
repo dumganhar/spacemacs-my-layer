@@ -13,7 +13,6 @@
         ace-window
         avy
         helm-ls-git
-        reveal-in-finder
         command-log-mode
         chinese-fonts-setup
         ))
@@ -25,14 +24,6 @@
 (defun my-misc/init-command-log-mode ()
   (use-package command-log-mode))
 
-(defun my-misc/init-reveal-in-finder ()
-  (use-package reveal-in-finder
-    :defer t
-    :init
-    (progn
-      (evil-leader/set-key
-        "bf" 'reveal-in-finder))))
-;;
 (defun my-misc/init-swiper ()
   "Initialize my package"
   (use-package swiper
@@ -65,6 +56,13 @@
             (find-file (car lst))
             (goto-char (point-min))
             (forward-line (1- (string-to-number (cadr lst)))))))
+      (use-package ivy
+        :defer t
+        :config
+        (progn
+          (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
+          (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)
+          ))
 
       (define-key global-map (kbd "C-s") 'swiper)
       (setq ivy-use-virtual-buffers t)
