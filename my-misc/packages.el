@@ -67,6 +67,8 @@
             (forward-line (1- (string-to-number (cadr lst)))))))
 
       (define-key global-map (kbd "C-s") 'swiper)
+      (setq ivy-use-virtual-buffers t)
+      (global-set-key (kbd "C-c C-r") 'ivy-resume)
       (global-set-key (kbd "C-c j") 'counsel-git-grep))))
 
 
@@ -111,8 +113,8 @@
 
      (define-key magit-log-mode-map (kbd "W") 'magit-copy-item-as-kill)
      (setq magit-process-popup-time 10)
-     ))
-  )
+     (define-key magit-status-mode-map (kbd "C-j") 'magit-goto-next-sibling-section)
+     (define-key magit-status-mode-map (kbd "C-k") 'magit-goto-previous-sibling-section))))
 
 (defun my-misc/post-init-git-messenger ()
   (use-package git-messenger

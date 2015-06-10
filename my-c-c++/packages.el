@@ -46,7 +46,6 @@
     :defer t
     :config
     (global-set-key (kbd "C-.") 'company-complete)
-    (setq company-idle-delay 0.08)
     (setq company-minimum-prefix-length 1)
     ))
 
