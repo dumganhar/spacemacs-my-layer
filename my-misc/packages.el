@@ -14,11 +14,7 @@
         avy
         helm-ls-git
         command-log-mode
-        chinese-fonts-setup
         ))
-
-(defun my-misc/init-chinese-fonts-setup ()
-  (use-package chinese-fonts-setup))
 
 
 (defun my-misc/init-command-log-mode ()
@@ -89,8 +85,8 @@
                             "url"))
                 (magit-get-current-branch))))
 
-     (define-key magit-mode-map "V"
-       'endless/visit-pull-request-url)
+     (evilify magit-status-mode magit-status-mode-map
+              "V" 'endless/visit-pull-request-url)
 
      (defadvice magit-blame-mode (after magit-blame-change-to-emacs-state activate compile)
        "when entering magit blame mode, change evil normal state to emacs state"
