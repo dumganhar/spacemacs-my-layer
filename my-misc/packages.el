@@ -14,8 +14,15 @@
         avy
         helm-ls-git
         command-log-mode
+        keyfreq
         ))
 
+(defun my-misc/init-keyfreq ()
+  (use-package keyfreq
+    :init
+    (progn
+      (keyfreq-mode t)
+      (keyfreq-autosave-mode 1))))
 
 (defun my-misc/init-command-log-mode ()
   (use-package command-log-mode))
