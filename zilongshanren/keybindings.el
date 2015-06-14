@@ -37,5 +37,10 @@
 
 (global-set-key [(shift return)] 'smart-open-line)
 
+(define-key global-map (kbd "<f1>") 'hotspots)
+(define-key global-map (kbd "C-c y") 'youdao-dictionary-search-at-point+)
 
-
+(global-set-key (kbd "C-c a") 'org-agenda)
+(define-key global-map (kbd "C-c r") 'org-capture)
+(define-key global-map (kbd "<f9>") 'org-capture)
+(evil-leader/set-key-for-mode 'org-mode  "mt" 'org-set-tags)
