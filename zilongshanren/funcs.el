@@ -391,51 +391,6 @@ org-files and bookmarks"
                    helm-source-bookmarks
                    helm-source-bookmark-set)))
 
-(defun prelude-shift-left-visual ()
-  "Shift left and restore visual selection."
-  (interactive)
-  (evil-shift-left (region-beginning) (region-end))
-  (evil-normal-state)
-  (evil-visual-restore))
-
-(defun prelude-shift-right-visual ()
-  "Shift right and restore visual selection."
-  (interactive)
-  (evil-shift-right (region-beginning) (region-end))
-  (evil-normal-state)
-  (evil-visual-restore))
-
-(defun zilongshanren/open-line-above()
-  "open an empty line above the current line"
-  (interactive)
-  (save-excursion
-    (evil-open-above 1)
-    (evil-normal-state)
-    ))
-
-(defun zilongshanren/open-line-below()
-  "open an empty line below the current line"
-  (interactive)
-  (save-excursion
-    (evil-open-below 1)
-    (evil-normal-state))
-  )
-
-(defun zilongshanren/yank-to-end-of-line ()
-  "Yank to end of line."
-  (interactive)
-  (evil-yank (point) (point-at-eol)))
-
-(defun zilongshanren/evil-quick-replace (beg end )
-  (interactive "r")
-  (when (evil-visual-state-p)
-    (evil-exit-visual-state)
-    (let ((selection (regexp-quote (buffer-substring-no-properties beg end))))
-      (setq command-string (format "%%s /%s//g" selection))
-      (minibuffer-with-setup-hook
-          (lambda () (backward-char 2))
-      (evil-ex command-string))
-      )))
 
 ;; used by org-clock-sum-today-by-tags
 (defun filter-by-tags ()

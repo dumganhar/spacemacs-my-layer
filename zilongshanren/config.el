@@ -64,7 +64,7 @@
 ;; more useful frame title, that show either a file or a
 ;; buffer name (if the buffer isn't visiting a file)
 (setq frame-title-format
-      '("" " Guanghui - " (:eval (if (buffer-file-name)
+      '("" " James - " (:eval (if (buffer-file-name)
                                                     (abbreviate-file-name (buffer-file-name))
                                    "%b"))))
 
@@ -83,8 +83,8 @@
 ;; current subdir, instead of the current subdir of this dired buffer
 (setq dired-dwim-target t)
 
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(evil-leader/set-key "bi" 'ibuffer)
+;; (global-set-key (kbd "C-x C-b") 'ibuffer)
+
 ;; when press c-d, the result is wrong.
 ;; (defadvice ido-find-file (after find-file-sudo activate)
 ;;   "Find file as root if necessary."
@@ -152,7 +152,7 @@
 
 (require 'semantic/bovine/c)
 (require 'semantic/ia)
-(defvar cocos2dx-dir "~/cocos2d-x")
+(defvar cocos2dx-dir "~/Project/cocos2d-x")
 (semantic-add-system-include cocos2dx-dir 'c++-mode)
 (semantic-add-system-include (concat cocos2dx-dir "/cocos") 'c++-mode)
 (semantic-add-system-include (concat cocos2dx-dir "/platform") 'c++-mode)
@@ -235,7 +235,7 @@
                                             ("8zh" "@~chinese")
 
                                             ;; email
-                                            ("8me" "guanghui.qu@cocos2d-x.org")
+                                            ("8me" "jianhua.chen@cocos2d-x.org")
 
                                             ;; computing tech
                                             ("8wp" "Wikipedia")
@@ -364,26 +364,3 @@
          :empty-lines 1)
 	))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-agenda-custom-commands nil)
- '(org-agenda-files (quote ("~/org-notes/gtd.org"
-                            "~/org-notes/emacs.org"
-                            "~/org-notes/cocos2d-x.org"
-                            "~/org-notes/notes.org"
-                            "~/org-notes/learning.org"
-                            "~/org-notes/vim.org"
-                            "~/org-notes/journal.org"
-                            )))
- '(org-agenda-ndays 1)
- '(org-agenda-show-all-dates t)
- '(org-agenda-skip-deadline-if-done t)
- '(org-agenda-skip-scheduled-if-done t)
- '(org-agenda-skip-deadline-prewarning-if-scheduled t)
- '(org-agenda-start-on-weekday nil)
- '(org-deadline-warning-days 14)
- '(org-fast-tag-selection-single-key (quote expert))
- '(org-reverse-note-order t))
