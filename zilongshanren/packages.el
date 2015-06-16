@@ -60,7 +60,7 @@
                   ("/usr/include/" "/usr/local/include/" "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")))
            (setq company-c-headers-path-user
                  (quote
-                  ("/Users/guanghui/cocos2d-x/cocos/platform" "/Users/guanghui/cocos2d-x/cocos" "." "/Users/guanghui/cocos2d-x/cocos/audio/include/")))
+                  ("/Users/james/Project/cocos2d-x/cocos/platform" "/Users/james/Project/cocos2d-x/cocos" "." "/Users/james/Project/cocos2d-x/cocos/audio/include/")))
            )
     ))
 
